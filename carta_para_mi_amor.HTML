@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para mi amor ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      background: linear-gradient(180deg, #ffd6e5, #ffeef5);
+    }
+
+    .login, .galaxia, .carta {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      border-radius: 25px;
+      padding: 30px 25px;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      z-index: 2;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #e6005c;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #b30047;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 18px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      width: 80%;
+      text-align: center;
+      outline: none;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      background: #ff4d88;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e6005c;
+    }
+
+    .error {
+      margin-top: 10px;
+      color: red;
+      font-size: 16px;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      font-size: 24px;
+      color: #ff4d88;
+      animation: floatUp linear infinite;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .star-float {
+      position: absolute;
+      bottom: -50px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.9;
+      animation: floatUp linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    .galaxia {
+      display: none;
+      background: radial-gradient(circle at center, #2b1055, #000);
+      color: white;
+      overflow: hidden;
+      cursor: pointer;
+      flex-direction: column;
+    }
+
+    .palabra {
+      position: absolute;
+      font-family: 'Pacifico', cursive;
+      color: #ff9ecb;
+      font-size: 22px;
+      animation: girar linear infinite;
+      pointer-events: none;
+      white-space: nowrap;
+      left: 50%;
+      top: 50%;
+      text-shadow: 0 0 8px rgba(255,158,203,0.8);
+    }
+
+    @keyframes girar {
+      from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+    }
+
+    .instruccion {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+      color: #ffd1e6;
+    }
+
+    .carta {
+      display: none;
+      background: linear-gradient(180deg, #ffe6ec, #ffd6e5);
+      flex-direction: column;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .carta .card {
+      border: 4px solid #ff9ecb;
+      background: linear-gradient(180deg, #fff, #fff7fa);
+      animation: aparecer 1.2s ease;
+    }
+
+    @keyframes aparecer {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .flor {
+      position: absolute;
+      font-size: 28px;
+      opacity: 0.95;
+    }
+    .flor.tl { top: 10px; left: 10px; }
+    .flor.tr { top: 10px; right: 10px; }
+    .flor.bl { bottom: 10px; left: 10px; }
+    .flor.br { bottom: 10px; right: 10px; }
+
+    .frase {
+      position: absolute;
+      font-family: 'Pacifico', cursive;
+      color: #ff4d88;
+      font-size: 18px;
+      opacity: 0.85;
+      animation: flotar 12s linear infinite;
+      pointer-events: none;
+      text-shadow: 0 0 6px rgba(255,77,136,0.6);
+    }
+
+    @keyframes flotar {
+      from { transform: translateY(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      to { transform: translateY(-120vh); opacity: 0; }
+    }
+
+    .btn-musica {
+      margin-top: 15px;
+      background: #ff85ad;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login -->
+  <div class="login" id="login">
+    <div class="card">
+      <h1>Para mi amor 💖</h1>
+      <p>Pon una fecha especial</p>
+      <input type="text" id="password" placeholder="DD/MM/AAAA">
+      <br>
+      <button onclick="verificar()">Entrar</button>
+      <div class="error" id="error"></div>
+    </div>
+  </div>
+
+  <!-- Galaxia -->
+  <div class="galaxia" id="galaxia">
+    <div class="instruccion">Haz click tres veces para continuar, amor 💫</div>
+  </div>
+
+  <!-- Carta -->
+  <div class="carta" id="carta">
+    <div class="card">
+      <div class="flor tl">🌷</div>
+      <div class="flor tr">🌷</div>
+      <div class="flor bl">🌷</div>
+      <div class="flor br">🌷</div>
+
+      <h1>💌</h1>
+      <p><strong>Feliz día de San Valentín</strong></p>
+
+      <p>
+        <strong>Mi amor:</strong><br><br>
+        Quise hacerte esto porque eres lo más bonito que me ha pasado. Gracias por estar en mi vida
+        y por llenar mis días de sonrisas. Te amo con todo mi corazón y quiero que sepas que eres
+        mi universo y el amor de mi vida. ❤️
+      </p>
+
+      <button class="btn-musica" onclick="reproducir()">▶ Reproducir nuestra canción</button>
+    </div>
+
+    <audio id="musica" src="Little Jesus - Primavera 2020 ft. Zoe Gotusso.mp3" loop></audio>
+  </div>
+
+  <script>
+    const CLAVE = "20/04/2025";
+    let clicks = 0;
+
+    function verificar() {
+      const pass = document.getElementById("password").value.trim();
+      const error = document.getElementById("error");
+
+      if (pass === CLAVE) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("galaxia").style.display = "flex";
+        iniciarGalaxia();
+      } else {
+        error.textContent = "Esa no es la fecha correcta, intenta otra vez corazón 💔";
+      }
+    }
+
+    function crearCorazon() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (20 + Math.random() * 20) + "px";
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+    setInterval(crearCorazon, 500);
+
+    function crearEstrella() {
+      const star = document.createElement("div");
+      star.classList.add("star-float");
+      const size = Math.random() * 3 + 1;
+      star.style.width = size + "px";
+      star.style.height = size + "px";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(star);
+      setTimeout(() => star.remove(), 10000);
+    }
+    setInterval(crearEstrella, 300);
+
+    const palabras = [
+      "amor", "amorcito", "corazón", "hermosa", "vida",
+      "mi mundo", "mi felicidad", "mi luz", "te amo", "eres mi universo"
+    ];
+
+    function iniciarGalaxia() {
+      const galaxia = document.getElementById("galaxia");
+      palabras.forEach((txt) => {
+        const p = document.createElement("div");
+        p.classList.add("palabra");
+        p.innerText = txt;
+        p.style.animationDuration = (8 + Math.random() * 10) + "s";
+        galaxia.appendChild(p);
+      });
+    }
+
+    document.getElementById("galaxia").addEventListener("click", () => {
+      clicks++;
+      if (clicks >= 3) {
+        document.getElementById("galaxia").style.display = "none";
+        document.getElementById("carta").style.display = "flex";
+        iniciarFrases();
+      }
+    });
+
+    function reproducir() {
+      const audio = document.getElementById("musica");
+      audio.play();
+    }
+
+    // Frases de la canción (las que me pasaste)
+    const frases = [
+      "Me haces feliz sin darte cuenta",
+      "Cuando ríes, todo va en cámara lenta",
+      "Me haces bien",
+      "En tiempos tan raros, tú y yo contra todo",
+      "Locos en esta primavera",
+      "Contando una por una las estrellas",
+      "Nadie nos entiende, tú y yo contra todo",
+      "Llévame a todas partes",
+      "Como foto en tu cartera puedo estar",
+      "Mundos nuevos nos podemos inventar",
+      "Y todo va a estar
